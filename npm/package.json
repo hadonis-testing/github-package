@@ -1,0 +1,15 @@
+{
+  "name": "@hadonistesting/githubpackage",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [],
+  "author": "HAdonis Testing",
+  "license": "MIT",
+  "description": "Demo package for testing github package registry"
+}
