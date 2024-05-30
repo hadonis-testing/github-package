@@ -3,7 +3,7 @@ name: Demo publish npm package
 on:
   push:
     branches:
-      - npm
+      - main
 
 jobs:
   publish:
@@ -33,7 +33,7 @@ jobs:
           npm config set registry https://npm.pkg.github.com
           npm set //npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}
 
-      - run: npm publish --access=public
+      - run: npm publish
         working-directory: ${{ github.workspace }}/npm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
