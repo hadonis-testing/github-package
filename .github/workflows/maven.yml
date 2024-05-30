@@ -3,7 +3,7 @@ name: Demo publish Maven package
 on:
   push:
     branches:
-      - maven
+      - main
 
 jobs:
   publish:
