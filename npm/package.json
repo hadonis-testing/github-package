@@ -11,5 +11,8 @@
   "keywords": [],
   "author": "HAdonis Testing",
   "license": "MIT",
-  "description": "Demo package for testing github package registry"
+  "description": "Demo package for testing github package registry",
+  "publishConfig": {
+    "@hadonis-testing:registry": "https://npm.pkg.github.com"
+  }
 }
