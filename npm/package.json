@@ -1,6 +1,6 @@
 {
-  "name": "@hadonistesting/githubpackage",
-  "version": "1.0.0",
+  "name": "@hadonis-testing/github-package",
+  "version": "1.0.1",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
@@ -11,8 +11,5 @@
   "keywords": [],
   "author": "HAdonis Testing",
   "license": "MIT",
-  "description": "Demo package for testing github package registry",
-  "publishConfig": {
-    "@hadonis-testing:registry": "https://npm.pkg.github.com"
-  }
+  "description": "Demo package for testing github package registry"
 }

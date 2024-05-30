@@ -25,22 +25,15 @@ jobs:
           registry-url: https://npm.pkg.github.com/
 
       - name: Install dependencies
+        working-directory: ${{ github.workspace }}/npm
         run: |
-          cd npm
           npm ci
 
-      - run: npm publish
+      - run: |
+          npm config set registry https://npm.pkg.github.com
+          npm set //npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}
+
+      - run: npm publish --access=public
         working-directory: ${{ github.workspace }}/npm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # - name: Login to GitHub Container Registry
-      #   run: |
-      #     cd npm
-      #     echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" > .npmrc
-      #     npm login
-
-      # - name: Publish npm package
-      #   run: |
-      #     cd npm
-      #     npm publish
