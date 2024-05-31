@@ -3,7 +3,7 @@ name: Demo publish NuGet package
 on:
   push:
     branches:
-      - nuget
+      - main
 
 jobs:
   publish:
