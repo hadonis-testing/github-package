@@ -1,0 +1,37 @@
+name: Demo publish RubyGems package
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    name: Demo publish RubyGems package
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Authenticating
+        working-directory: ${{ github.workspace }}/rubygems
+        run: |
+          mkdir ~/.gem
+          touch ~/.gem/credentials
+          echo ":github: Bearer ${{ secrets.GITHUB_TOKEN }}" >> ~/.gem/credentials
+          chmod 0600 ~/.gem/credentials
+      
+      - name: Build Gem
+        working-directory: ${{ github.workspace }}/rubygems
+        run: |
+          gem build sun_quiz.gemspec
+      
+      - name: Publish
+        working-directory: ${{ github.workspace }}/rubygems
+        run: |
+          gem push --key github --host https://rubygems.pkg.github.com/hadonis-testing *.gem
