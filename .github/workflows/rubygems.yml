@@ -3,7 +3,7 @@ name: Demo publish RubyGems package
 on:
   push:
     branches:
-      - rubygems
+      - main
 
 jobs:
   publish:
