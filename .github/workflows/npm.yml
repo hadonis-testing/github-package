@@ -1,0 +1,39 @@
+name: Demo publish npm package
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    name: Demo publish npm package
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://npm.pkg.github.com/
+
+      - name: Install dependencies
+        working-directory: ${{ github.workspace }}/npm
+        run: |
+          npm ci
+
+      - run: |
+          npm config set registry https://npm.pkg.github.com
+          npm set //npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}
+
+      - run: npm publish
+        working-directory: ${{ github.workspace }}/npm
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
